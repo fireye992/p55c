@@ -1,21 +1,25 @@
 <?php
 
-namespace Database\Seeders;
-
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        User::factory()->create([
+        // Supprimer l'utilisateur existant s'il existe
+        DB::table('users')->where('email', 'admin@corporateui.com')->delete();
+
+        // Créer un nouvel utilisateur
+        User::create([
             'name' => 'Alec Thompson',
             'email' => 'admin@corporateui.com',
-            'password' => Hash::make('secret'),
-            'about' => "Hi, I’m Alec Thompson, Decisions: If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality).",
+            'email_verified_at' => now(),
+            'password' => bcrypt('password'), // change this to a proper hashed password
+            'profile_photo_path' => null,
+            'current_team_id' => null,
+            'about' => 'Hi, I’m Alec Thompson, Decisions: If you can’t decide, the answer is no...',
         ]);
     }
 }
