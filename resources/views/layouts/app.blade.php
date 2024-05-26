@@ -19,9 +19,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     @if (config('app.is_demo'))
-        <title itemprop="name">
-            Corporate UI Dashboard Laravel by Creative Tim & UPDIVISION
-        </title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@CreativeTim" />
@@ -52,7 +50,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <title>
-        Corporate UI by Creative Tim & UPDIVISION
+        PaperStreet Connection
     </title>
     <!--     Fonts and icons     -->
     <link
@@ -66,11 +64,12 @@
     <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="../assets/css/corporate-ui-dashboard.css?v=1.0.0" rel="stylesheet" />
+    @livewireStyles
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
     @php
-        $topSidenavArray = ['wallet', 'profile'];
+        $topSidenavArray = ['wallet', 'profile','profile.edit'];
         $topSidenavTransparent = ['signin', 'signup'];
         $topSidenavRTL = ['RTL'];
     @endphp
@@ -85,9 +84,8 @@
     @else
         <x-app.sidebar />
     @endif
-
     {{ $slot }}
-
+    
     <div class="fixed-plugin">
         <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
             <i class="fa fa-cog py-2"></i>
@@ -442,6 +440,7 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Corporate UI Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../assets/js/corporate-ui-dashboard.min.js?v=1.0.0"></script>
+    @livewireScripts
 </body>
 
 </html>

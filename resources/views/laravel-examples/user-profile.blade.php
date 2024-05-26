@@ -72,6 +72,14 @@
 
                                 <div class="row">
                                     <div class="col-6">
+                                        <label for="first_name">Prénom</label>
+                                        <input type="text" name="first_name" id="first_name"
+                                            value="{{ old('first_name', auth()->user()->first_name) }}" class="form-control">
+                                        @error('first_name')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-6">
                                         <label for="name">Name</label>
                                         <input type="text" name="name" id="name"
                                             value="{{ old('name', auth()->user()->name) }}" class="form-control">
@@ -79,6 +87,8 @@
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-6">
                                         <label for="email">Email</label>
                                         <input type="email" name="email" id="email"
@@ -87,15 +97,50 @@
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
+                                    <div class="col-6">
+                                        <label for="activity_type" class="block font-medium text-sm text-gray-700">Activité</label>
+                                        <select id="activity_type" name="activity_type" class="form-control block mt-1 w-full">
+                                            <option value="loisir" {{ old('activity_type', auth()->user()->activity_type) == 'loisir' ? 'selected' : '' }}>
+                                                {{ __('Loisir') }}
+                                            </option>
+                                            <option value="competition" {{ old('activity_type', auth()->user()->activity_type) == 'competition' ? 'selected' : '' }}>
+                                                {{ __('Competition') }}
+                                            </option>
+                                        </select>
+                                        @error('activity_type')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
+                                        <label for="zip_code">zip_code</label>
+                                        <input type="text" name="zip_code" id="zip_code" placeholder="0733456987"
+                                            value="{{ old('zip_code', auth()->user()->zip_code) }}" class="form-control">
+                                        @error('zip_code')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-6">
                                         <label for="location">Location</label>
-                                        <input type="text" name="location" id="location"
-                                            placeholder="Bucharest, Romania"
-                                            value="{{ old('location', auth()->user()->location) }}"
+                                        <input type="text" name="city" id="city"
+                                            placeholder="Strasbourg, France"
+                                            value="{{ old('city', auth()->user()->city) }}"
                                             class="form-control">
                                         @error('location')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="birth_date">Date de naissance</label>
+                                        <input type="text" name="birth_date" id="birth_date"
+                                               placeholder="Jour/mois/année"
+                                               value="{{ old('birth_date', auth()->user()->birth_date) }}"
+                                               class="form-control">
+                                        @error('birth_date')
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
@@ -109,6 +154,7 @@
                                         @enderror
                                     </div>
                                 </div>
+                     
                                 <div class="row p-2">
                                     <label for="about">About me</label>
                                     <textarea name="about" id="about" rows="5" class="form-control">{{ old('about', auth()->user()->about) }}</textarea>

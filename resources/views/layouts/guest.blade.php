@@ -53,6 +53,7 @@
     <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="../assets/css/corporate-ui-dashboard.css?v=1.0.0" rel="stylesheet" />
+    @livewireStyles
 </head>
 
 <body class="">
@@ -76,6 +77,7 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Corporate UI Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../assets/js/corporate-ui-dashboard.min.js?v=1.0.0"></script>
+    @livewireScripts
 </body>
 
 </html>

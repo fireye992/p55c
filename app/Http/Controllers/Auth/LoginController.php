@@ -1,5 +1,56 @@
 <?php
 
+// namespace App\Http\Controllers\Auth;
+
+// use Illuminate\Http\Request;
+// use Illuminate\Support\Facades\Auth;
+// use App\Http\Controllers\Controller;
+
+
+// class LoginController extends Controller
+// {
+
+//     /**
+//      * Show the form for creating a new resource.
+//      *
+//      * @return \Illuminate\Http\Response
+//      */
+//     public function create()
+//     {
+//         return view('auth.signin');
+//     }
+
+
+//     /**
+//      * Store a newly created resource in storage.
+//      *
+//      * @param  \Illuminate\Http\Request  $request
+//      * @return \Illuminate\Http\Response
+//      */
+//     public function store(Request $request)
+//     {
+
+//         $credentials = $request->only('email', 'password');
+
+//         $rememberMe = $request->rememberMe ? true : false;
+
+//         if (Auth::attempt($credentials, $rememberMe)) {
+//             $request->session()->regenerate();
+
+//             return redirect()->intended('/dashboard');
+//         }
+
+
+
+//         return back()->withErrors([
+//             'message' => 'The provided credentials do not match our records.',
+//         ])->withInput($request->only('email'));
+//     }
+// }
+
+//////////////////////////////////////////////////
+
+
 namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
@@ -65,4 +116,13 @@ class LoginController extends Controller
 
         return redirect('/sign-in');
     }
+
+    protected function authenticated(Request $request, $user)
+{
+    if ($user->first_name == null || $user->birth_date == null || $user->address == null || $user->zip_code == null || $user->city == null || $user->phone == null || $user->activity_type == null) {
+        session()->flash('status', 'Please complete your profile information.');
+    }
+    return redirect()->route('profile.edit');
+}
+
 }

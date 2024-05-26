@@ -1,5 +1,6 @@
 <x-app-layout>
-
+    <a href="{{ route('profile.edit') }}">Edit Profile</a>
+    @livewire('profile')
     <div class="main-content position-relative bg-gray-100 max-height-vh-100 h-100">
         <div class="pt-7 pb-6 bg-cover"
             style="background-image: url('../assets/img/header-orange-purple.jpg'); background-position: bottom;">
@@ -16,7 +17,7 @@
                     <div class="col-auto my-auto">
                         <div class="h-100">
                             <h3 class="mb-0 font-weight-bold">
-                                Noah Mclaren
+                                {{ auth()->user()->name }}
                             </h3>
                             <p class="mb-0">
                                 noah_mclaren@mail.com
@@ -128,7 +129,7 @@
                                     <span class="text-secondary">First Name:</span> &nbsp; Noah
                                 </li>
                                 <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm">
-                                    <span class="text-secondary">Last Name:</span> &nbsp; Mclaren
+                                    <span class="text-secondary">Last Name:</span> &nbsp;  {{ auth()->user()->name }}
                                 </li>
                                 <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm">
                                     <span class="text-secondary">Mobile:</span> &nbsp; +(44) 123 1234 123
