@@ -11,7 +11,7 @@
                     <div class="col-auto">
                         <div
                             class="avatar avatar-2xl rounded-circle position-relative mt-n7 border border-gray-100 border-4">
-                            <img src="../assets/img/team-2.jpg" alt="profile_image" class="w-100">
+                            <img src="{{ asset('storage/' . auth()->user()->profile_photo_path) }}" alt="Profile Photo" class="w-100">
                         </div>
                     </div>
                     <div class="col-auto my-auto">

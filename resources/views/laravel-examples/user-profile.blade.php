@@ -2,11 +2,11 @@
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
 
         <div class="top-0 bg-cover z-index-n1 min-height-100 max-height-200 h-25 position-absolute w-100 start-0 end-0"
-            style="background-image: url('../../../assets/img/header-blue-purple.jpg'); background-position: bottom;">
+            style="background-image: url('../../../assets/img/header-blue-purple2.jpg'); background-position: bottom;">
         </div>
         <x-app.navbar />
         <div class="px-5 py-4 container-fluid ">
-            <form action={{ route('users.update') }} method="POST">
+            <form action={{ route('users.update') }} method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="mt-5 mb-5 mt-lg-9 row justify-content-center">
@@ -18,7 +18,7 @@
                             <div class="row z-index-2 justify-content-center align-items-center">
                                 <div class="col-sm-auto col-4">
                                     <div class="avatar avatar-xl position-relative">
-                                        <img src="../assets/img/team-2.jpg" alt="bruce"
+                                        <img src="{{ asset('storage/' . auth()->user()->profile_photo_path) }}" alt="Profile Photo"
                                             class="w-100 h-100 object-fit-cover border-radius-lg shadow-sm"
                                             id="preview">
                                     </div>
@@ -154,6 +154,15 @@
                                         @enderror
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="photo">Photo</label>
+                                    <input type="file" class="form-control" id="photo" name="photo">
+                                    @error('photo')
+                                        <span class="text-danger text-sm">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                
                      
                                 <div class="row p-2">
                                     <label for="about">About me</label>

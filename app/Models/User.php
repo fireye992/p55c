@@ -28,13 +28,13 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'first_name',
-        'name', 
-        'birth_date', 
+        'name',
+        'birth_date',
         'address',
         'zip_code',
-        'city', 
+        'city',
         'phone',
-        'email', 
+        'email',
         'password',
         'activity_type',
 
@@ -73,6 +73,14 @@ class User extends Authenticatable
     public function getBirthDateAttribute($value)
     {
         return $value ? Carbon::createFromFormat('Y-m-d', $value)->format('d/m/Y') : null;
+    }
+
+    // Dans le modèle User
+    public function updateProfilePhoto($photoFile)
+    {
+        $path = $photoFile->store('profile-photos', 'public');
+        $this->profile_photo_path = $path;
+        $this->save();
     }
 }
 

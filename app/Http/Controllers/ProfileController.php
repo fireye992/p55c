@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
 
 class ProfileController extends Controller
@@ -64,6 +65,7 @@ class ProfileController extends Controller
             'address' => 'nullable|string|min:8',            
             'birth_date' => 'nullable|date_format:d/m/Y',
             'activity_type' => ['nullable', Rule::in(['loisir', 'competition'])],
+            'photo' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048', // Max 2MB file
         ], [
             'name.required' => 'Name is required',
             'email.required' => 'Email is required',
@@ -86,6 +88,20 @@ class ProfileController extends Controller
             'activity_type' => $request->activity_type,
 
         ]);
+
+        
+    // if ($request->hasFile('photo')) {
+    //     $user->updateProfilePhoto($request->file('photo'));
+    // }
+    if ($request->hasFile('photo')) {
+        $path = $request->file('photo')->store('profile-photos', 'public');
+        $user->profile_photo_path = $path;
+        $user->save();
+    
+        // Log pour voir ce qui est enregistré
+        Log::info('Photo updated for user: ' . $user->id . ' with path: ' . $user->profile_photo_path);
+    }
+    
 
         return back()->with('success', 'Profile updated successfully.');
     }

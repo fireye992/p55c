@@ -104,7 +104,7 @@
                                             <td>
                                                 <div class="d-flex px-2 py-1">
                                                     <div class="d-flex align-items-center">
-                                                        <img src="../assets/img/team-2.jpg"
+                                                        <img src="{{ asset('storage/' . auth()->user()->profile_photo_path) }}"
                                                             class="avatar avatar-sm rounded-circle me-2"
                                                             alt="user1">
                                                     </div>
