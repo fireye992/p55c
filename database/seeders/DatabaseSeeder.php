@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use Database\Seeders\CarouselSeeder;
 use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
@@ -21,5 +22,8 @@ class DatabaseSeeder extends Seeder
             'current_team_id' => null,
             'about' => 'Hi, I’m Alec Thompson, Decisions: If you can’t decide, the answer is no...',
         ]);
+
+          // Appeler le seeder pour le carrousel
+          $this->call(CarouselSeeder::class);
     }
 }

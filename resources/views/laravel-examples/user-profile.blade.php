@@ -29,7 +29,12 @@
                                             {{ auth()->user()->name }}
                                         </h5>
                                         <p class="mb-0 font-weight-bold text-sm">
-                                            CEO / Co-Founder
+                                            {{  auth()->user()->first_name }}
+                                        </p>
+                                            <p class="mb-0 font-weight-bold text-sm">
+                                                @if (auth()->user()->is_admin)
+                                            <span style="color: darkred;">Administrateur</span>
+                                        @endif
                                         </p>
                                     </div>
                                 </div>

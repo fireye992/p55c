@@ -8,18 +8,29 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\CarouselController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Middleware\IsAdmin;
+use App\Http\Controllers\DashrouselController;
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+
+Route::middleware(['auth', IsAdmin::class])->group(function () {
+    Route::resource('carousel', CarouselController::class);
+});
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile.edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile.edit', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+     Route::get('/dashrousel', [DashrouselController::class, 'index'])->name('dashrousel');
     
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    // Route::get('/dashboard', function () {
+    //     return view('dashboard');
+    // })->name('dashboard');
 
     Route::get('/tables', function () {
         return view('tables');

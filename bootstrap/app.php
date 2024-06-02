@@ -41,6 +41,10 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
+// $app->routeMiddleware([
+//     'isAdmin' => App\Http\Middleware\IsAdmin::class,
+// ]);
+
 /*
 |--------------------------------------------------------------------------
 | Return The Application

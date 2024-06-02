@@ -1,5 +1,4 @@
 <x-app-layout>
-    
     {{-- @livewire('profile') --}}
     <div class="main-content position-relative bg-gray-100 max-height-vh-100 h-100">
         <div class="pt-7 pb-6 bg-cover"
@@ -11,13 +10,14 @@
                     <div class="col-auto">
                         <div
                             class="avatar avatar-2xl rounded-circle position-relative mt-n7 border border-gray-100 border-4">
-                            <img src="{{ asset('storage/' . auth()->user()->profile_photo_path) }}" alt="Profile Photo" class="w-100">
+                            <img src="{{ asset('storage/' . auth()->user()->profile_photo_path) }}" alt="Profile Photo"
+                                class="w-100">
                         </div>
                     </div>
                     <div class="col-auto my-auto">
                         <div class="h-100">
                             <h3 class="mb-0 font-weight-bold">
-                                {{ auth()->user()->name }}  {{  auth()->user()->first_name }}
+                                {{ auth()->user()->name }} {{ auth()->user()->first_name }}
                             </h3>
                             <p class="mb-0">
                                 {{ auth()->user()->email }}
@@ -104,36 +104,45 @@
                             <div class="row">
                                 <div class="col-md-8 col-9">
                                     <h6 class="mb-0 font-weight-semibold text-lg">Profile information</h6>
-                                    <p class="text-sm mb-1">Edit the information about you.</p>
+                                    <p class="text-sm mb-1">
+                                        @if (auth()->user()->is_admin)
+                                            <span style="color: red;">Administrateur</span>
+                                        @endif
+                                    </p>
                                 </div>
                                 <div class="col-md-4 col-3 text-end">
                                     <a href="{{ route('users.profile') }}" class="btn btn-white btn-icon px-2 py-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z" />
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                            viewBox="0 0 24 24" fill="currentColor">
+                                            <path
+                                                d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z" />
                                         </svg>
                                     </a>
                                 </div>
-                                
+
                             </div>
                         </div>
-                        <div class="card-body p-3">   
-                                <p name="about" id="about" rows="5" class="class="text-sm mb-4">{{  auth()->user()->about }}</a>          
+                        <div class="card-body p-3">
+                            <p name="about" id="about" rows="5" class="text-sm mb-4">
+                                {{ auth()->user()->about }}</p>
                             <ul class="list-group">
                                 <li
                                     class="list-group-item border-0 ps-0 text-dark font-weight-semibold pt-0 pb-1 text-sm">
-                                    <span class="text-secondary">First Name:</span> &nbsp; {{ auth()->user()->first_name }}
+                                    <span class="text-secondary">First Name:</span> &nbsp;
+                                    {{ auth()->user()->first_name }}
                                 </li>
                                 <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm">
-                                    <span class="text-secondary">Last Name:</span> &nbsp;  {{ auth()->user()->name }}
+                                    <span class="text-secondary">Last Name:</span> &nbsp; {{ auth()->user()->name }}
                                 </li>
                                 <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm">
                                     <span class="text-secondary">Mobile:</span> &nbsp; {{ auth()->user()->phone }}
                                 </li>
                                 <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm">
-                                    <span class="text-secondary">Activité:</span> &nbsp; {{  auth()->user()->activity_type }}
+                                    <span class="text-secondary">Activité:</span> &nbsp;
+                                    {{ auth()->user()->activity_type }}
                                 </li>
                                 <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm">
-                                    <span class="text-secondary">Location:</span> &nbsp; {{  auth()->user()->city }}
+                                    <span class="text-secondary">Location:</span> &nbsp; {{ auth()->user()->city }}
                                 </li>
                                 <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm">
                                     <span class="text-secondary">Social:</span> &nbsp;
@@ -461,8 +470,8 @@
                     href="https://www.creative-tim.com/learning-lab/bootstrap/installation-guide/corporate-ui-dashboard">View
                     documentation</a>
                 <div class="w-100 text-center">
-                    <a class="github-button" href="https://github.com/creativetimofficial/corporate-ui-dashboard" target="_blank"
-                        data-icon="octicon-star" data-size="large" data-show-count="true"
+                    <a class="github-button" href="https://github.com/creativetimofficial/corporate-ui-dashboard"
+                        target="_blank" data-icon="octicon-star" data-size="large" data-show-count="true"
                         aria-label="Star creativetimofficial/corporate-ui-dashboard on GitHub">Star</a>
                     <h6 class="mt-3">Thank you for sharing!</h6>
                     <a href="https://twitter.com/intent/tweet?text=Check%20Corporate%20UI%20Dashboard%20made%20by%20%40CreativeTim%20%23webdesign%20%23dashboard%20%23bootstrap5&amp;url=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2Fcorporate-ui-dashboard"
