@@ -1,6 +1,6 @@
 <x-app-layout>
-    <a href="{{ route('profile.edit') }}">Edit Profile</a>
-    @livewire('profile')
+    
+    {{-- @livewire('profile') --}}
     <div class="main-content position-relative bg-gray-100 max-height-vh-100 h-100">
         <div class="pt-7 pb-6 bg-cover"
             style="background-image: url('../assets/img/header-orange-purple.jpg'); background-position: bottom;">
@@ -17,10 +17,10 @@
                     <div class="col-auto my-auto">
                         <div class="h-100">
                             <h3 class="mb-0 font-weight-bold">
-                                {{ auth()->user()->name }}
+                                {{ auth()->user()->name }}  {{  auth()->user()->first_name }}
                             </h3>
                             <p class="mb-0">
-                                noah_mclaren@mail.com
+                                {{ auth()->user()->email }}
                             </p>
                         </div>
                     </div>
@@ -107,38 +107,33 @@
                                     <p class="text-sm mb-1">Edit the information about you.</p>
                                 </div>
                                 <div class="col-md-4 col-3 text-end">
-                                    <button type="button" class="btn btn-white btn-icon px-2 py-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                            viewBox="0 0 24 24" fill="currentColor">
-                                            <path
-                                                d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z" />
+                                    <a href="{{ route('users.profile') }}" class="btn btn-white btn-icon px-2 py-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z" />
                                         </svg>
-                                    </button>
+                                    </a>
                                 </div>
+                                
                             </div>
                         </div>
-                        <div class="card-body p-3">
-                            <p class="text-sm mb-4">
-                                Hi, I’m Alec Thompson, Decisions: If you can’t decide, the answer is no. If two equally
-                                difficult paths, choose the one more painful in the short term (pain avoidance is
-                                creating an illusion of equality).
-                            </p>
+                        <div class="card-body p-3">   
+                                <p name="about" id="about" rows="5" class="class="text-sm mb-4">{{  auth()->user()->about }}</a>          
                             <ul class="list-group">
                                 <li
                                     class="list-group-item border-0 ps-0 text-dark font-weight-semibold pt-0 pb-1 text-sm">
-                                    <span class="text-secondary">First Name:</span> &nbsp; Noah
+                                    <span class="text-secondary">First Name:</span> &nbsp; {{ auth()->user()->first_name }}
                                 </li>
                                 <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm">
                                     <span class="text-secondary">Last Name:</span> &nbsp;  {{ auth()->user()->name }}
                                 </li>
                                 <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm">
-                                    <span class="text-secondary">Mobile:</span> &nbsp; +(44) 123 1234 123
+                                    <span class="text-secondary">Mobile:</span> &nbsp; {{ auth()->user()->phone }}
                                 </li>
                                 <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm">
-                                    <span class="text-secondary">Function:</span> &nbsp; Manager - Organization
+                                    <span class="text-secondary">Activité:</span> &nbsp; {{  auth()->user()->activity_type }}
                                 </li>
                                 <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm">
-                                    <span class="text-secondary">Location:</span> &nbsp; USA
+                                    <span class="text-secondary">Location:</span> &nbsp; {{  auth()->user()->city }}
                                 </li>
                                 <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm">
                                     <span class="text-secondary">Social:</span> &nbsp;

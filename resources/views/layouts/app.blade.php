@@ -440,6 +440,25 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Corporate UI Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../assets/js/corporate-ui-dashboard.min.js?v=1.0.0"></script>
+    <!-- mode nuit qui marche pas  -->
+    {{-- <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            // Optionally, save the theme to localStorage
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    
+        // On page load, check the saved theme
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+    </script> --}}
+    
     @livewireScripts
 </body>
 

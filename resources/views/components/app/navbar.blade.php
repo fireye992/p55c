@@ -5,7 +5,7 @@
                 <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Dashboard</a></li>
                 <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li>
             </ol>
-            <h6 class="font-weight-bold mb-0">Dashboard</h6>
+            <h6 class="font-weight-bold mb-0">{{ Route::currentRouteName() }}</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -140,7 +140,7 @@
                     </ul>
                 </li>
                 <li class="nav-item ps-2 d-flex align-items-center">
-                    <a href="javascript:;" class="nav-link text-body p-0">
+                    <a href="http://localhost/laravel-examples/user-profile" class="nav-link text-body p-0">
                         <img src="{{ asset('storage/' . auth()->user()->profile_photo_path) }}" alt="Profile Photo"class="avatar avatar-sm" />
                     </a>
                 </li>

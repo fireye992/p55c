@@ -1,11 +1,11 @@
 <x-app-layout>
-    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <main class="main-content position-relative max-height-vh-100 h-100  ">
 
-        <div class="top-0 bg-cover z-index-n1 min-height-100 max-height-200 h-25 position-absolute w-100 start-0 end-0"
+        {{-- <div class="top-0 bg-cover z-index-n1 min-height-100 max-height-200 h-25 position-absolute w-100 start-0 end-0"
             style="background-image: url('../../../assets/img/header-blue-purple2.jpg'); background-position: bottom;">
-        </div>
+        </div> --}}
         <x-app.navbar />
-        <div class="px-5 py-4 container-fluid ">
+        <div class="px-5 py-4 container"> <!-- Changez ici de 'container-fluid' à 'container' -->
             <form action={{ route('users.update') }} method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')

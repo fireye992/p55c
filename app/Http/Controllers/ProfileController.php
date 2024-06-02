@@ -60,12 +60,12 @@ class ProfileController extends Controller
             'email' => 'required|email|max:255|unique:users,email,' . Auth::id(),
             'city' => 'max:255',
             'phone' => 'numeric|digits:10',
-            'about' => 'max:255',
             'zip_code' => 'numeric|digits:5',
             'address' => 'nullable|string|min:8',            
             'birth_date' => 'nullable|date_format:d/m/Y',
             'activity_type' => ['nullable', Rule::in(['loisir', 'competition'])],
             'photo' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048', // Max 2MB file
+            'about' => 'nullable|string|max:500',
         ], [
             'name.required' => 'Name is required',
             'email.required' => 'Email is required',
@@ -96,10 +96,13 @@ class ProfileController extends Controller
     if ($request->hasFile('photo')) {
         $path = $request->file('photo')->store('profile-photos', 'public');
         $user->profile_photo_path = $path;
+
+        $user->about = $request->input('about');
+        
         $user->save();
     
         // Log pour voir ce qui est enregistré
-        Log::info('Photo updated for user: ' . $user->id . ' with path: ' . $user->profile_photo_path);
+        // Log::info('Photo updated for user: ' . $user->id . ' with path: ' . $user->profile_photo_path);
     }
     
 

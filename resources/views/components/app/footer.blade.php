@@ -18,7 +18,7 @@
             <ul class="nav nav-footer justify-content-center justify-content-lg-end">
                 <li class="nav-item">
                     <a href="https://www.creative-tim.com" class="nav-link text-m text-muted" target="_blank">Creative
-                        TimMuaytha
+                        TimMuayth</a>
                 </li>
                 <li class="nav-item">
                     <a href="https://www.updivision.com" class="nav-link text-m text-muted"
