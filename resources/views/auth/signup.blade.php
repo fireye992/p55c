@@ -17,9 +17,8 @@
                                 <div class="oblique-image position-absolute d-flex fixed-top ms-auto h-100 z-index-0 bg-cover me-n8"
                                     style="background-image:url('../assets/img/image-sign-up.jpg')">
                                     <div class="my-auto text-start max-width-350 ms-7">
-                                        <h1 class="mt-3 text-white font-weight-bolder">Start your <br> new journey.</h1>
-                                        <p class="text-white text-lg mt-4 mb-4">Use these awesome forms to login or
-                                            create new account in your project for free.</p>
+                                        <h1 class="mt-3 text-white font-weight-bolder">Team<br> Paper Street Soap Co.</h1>
+                                        <p class="text-white text-lg mt-4 mb-4">Like a monkey ready to be shot into space.</p>
                                         <div class="d-flex align-items-center">
                                             <div class="avatar-group d-flex">
                                                 <a href="javascript:;" class="avatar avatar-sm rounded-circle"
@@ -48,13 +47,12 @@
                                         </div>
                                     </div>
                                     <div class="text-start position-absolute fixed-bottom ms-7">
-                                        <h6 class="text-white text-sm mb-5">Copyright © 2022 Corporate UI Design System
-                                            by Creative Tim.</h6>
+                                        <h6 class="text-white text-sm mb-5">Copyright © 2024 Fenrir.</h6>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 d-flex flex-column mx-auto">
+                        <div class="col-md-5 d-flex flex-column mx-auto">
                             <div class="card card-plain mt-8">
                                 <div class="card-header pb-0 text-left bg-transparent">
                                     <h3 class="font-weight-black text-dark display-6">Sign up</h3>
