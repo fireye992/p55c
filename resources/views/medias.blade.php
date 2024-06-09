@@ -1,8 +1,9 @@
 <x-app-layout>
-
-    <a href="{{ route('carousel.index') }}" class="btn btn-sm  btn-white  mb-0 me-1" >Manage media</a>
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <x-app.navbar />
+    {{-- <a href="{{ route('carousel.index') }}" class="btn btn-sm  btn-white  mb-0 me-1" >Manage media</a> --}}
     <div class="position-relative overflow-hidden">
-        {{-- <h3 class="text-center">Horizontal Media</h3> --}}
+        <h3 class="text-center">Horizontal Media</h3>
         <div class="swiper mySwiper mt-4 mb-2 swiper-cards swiper-3d swiper-initialized swiper-horizontal swiper-pointer-events swiper-watch-progress">
             <div class="swiper-wrapper" style="cursor: grab; transition-duration: 0ms;">
                 @foreach($horizontalItems as $item)
@@ -33,7 +34,7 @@
             <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide"></div>
         </div>
 
-        {{-- <h3 class="text-center">Vertical Media</h3> --}}
+        <h3 class="text-center">Vertical Media</h3>
         <div class="swiper mySwiper mt-4 mb-2 swiper-cards swiper-3d swiper-initialized swiper-horizontal swiper-pointer-events swiper-watch-progress">
             <div class="swiper-wrapper" style="cursor: grab; transition-duration: 0ms;">
                 @foreach($verticalItems as $item)
@@ -64,6 +65,7 @@
             <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide"></div>
         </div>
     </div>
+    </main>
 </x-app-layout>
 
 <style>

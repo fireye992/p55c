@@ -11,7 +11,7 @@ use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Middleware\IsAdmin;
-use App\Http\Controllers\DashrouselController;
+use App\Http\Controllers\MediasController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SearchResultController;
 
@@ -31,7 +31,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-     Route::get('/dashrousel', [DashrouselController::class, 'index'])->name('dashrousel');
+     Route::get('/medias', [MediasController::class, 'index'])->name('Medias');
     
     // Route::get('/dashboard', function () {
     //     return view('dashboard');

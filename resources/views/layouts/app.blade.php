@@ -24,14 +24,14 @@
         <meta property="og:type" content="product">
         <meta property="og:title" content="Corporate UI Dashboard Laravel by Creative Tim & UPDIVISION">
         <meta property="og:url" content="https://www.creative-tim.com/live/corporate-ui-dashboard-laravel">
-        <meta property="og:image"
+        {{-- <meta property="og:image"
             content="https://s3.amazonaws.com/creativetim_bucket/products/737/original/corporate-ui-dashboard-laravel.jpg?1695288974">
-        <meta property="product:price:amount" content="FREE">
-        <meta property="product:price:currency" content="EUR">
+        <meta property="product:price:amount" content="FREE"> --}}
+        {{-- <meta property="product:price:currency" content="EUR">
         <meta property="product:availability" content="in Stock">
         <meta property="product:brand" content="Creative Tim">
         <meta property="product:category" content="Admin &amp; Dashboards">
-        <meta name="data-turbolinks-track" content="false">
+        <meta name="data-turbolinks-track" content="false"> --}}
 
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
@@ -49,6 +49,8 @@
     <script src="https://kit.fontawesome.com/349ee9c857.js" crossorigin="anonymous"></script>
     <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}"> --}}
     <link id="pagestyle" href="../assets/css/corporate-ui-dashboard.css?v=1.0.0" rel="stylesheet" />
     @livewireStyles
 </head>

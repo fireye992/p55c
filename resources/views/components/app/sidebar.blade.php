@@ -1,4 +1,11 @@
 <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 bg-slate-900 fixed-start " id="sidenav-main">
+
+        <span class="toggle-btn" id="iconSidenav">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-10 h-10 ">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+              </svg>
+        </span>   
+              
     <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
             aria-hidden="true" id="iconSidenav"></i>
@@ -141,7 +148,7 @@
                 <li class="nav-item border-start my-0 pt-2">
                     <a class="nav-link position-relative ms-0 ps-2 py-2 {{ request()->routeIs('carousel.index') ? 'active' : '' }}"
                         href="{{ route('carousel.index') }}">
-                        <span class="nav-link-text ms-1">Manage Medias</span>
+                        <span class="nav-link-text ms-1">Medias Management</span>
                     </a>
                 </li>
             @endif
@@ -164,8 +171,8 @@
                 </a>
             </li>    
              <li class="nav-item border-start my-0 pt-2">
-                <a class="nav-link position-relative ms-0 ps-2 py-2 {{ request()->routeIs('dashrousel') ? 'active' : '' }}"
-                    href="{{ route('dashrousel') }}">
+                <a class="nav-link position-relative ms-0 ps-2 py-2 {{ request()->routeIs('Medias') ? 'active' : '' }}"
+                    href="{{ route('Medias') }}">
                     <span class="nav-link-text ms-1">Medias</span>
                 </a>
             </li>    

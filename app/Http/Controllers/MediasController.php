@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Carousel;
 use FFMpeg\FFMpeg;
 
-class DashrouselController extends Controller
+class MediasController extends Controller
 {
     public function index()
     {
@@ -20,7 +20,7 @@ class DashrouselController extends Controller
             return !$this->isHorizontal($item);
         });
 
-        return view('dashrousel', [
+        return view('medias', [
             'horizontalItems' => $horizontalItems,
             'verticalItems' => $verticalItems,
         ]);

@@ -2,14 +2,16 @@
     <div class="container-fluid py-1 px-2">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-transparent mb-1 pb-0 pt-1 px-0 me-sm-6 me-5">
-                <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Dashboard</a></li>
-                <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li>
+                <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">{{ Route::currentRouteName() }}</a></li>
+                {{-- <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li> --}}
             </ol>
-            <h6 class="font-weight-bold mb-0">{{ Route::currentRouteName() }}</h6>
+            {{-- <h6 class="font-weight-bold mb-0">{{ Route::currentRouteName() }}</h6> --}}
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                <div class="input-group">
+                
+                        <!-- searchbar que je vais mettre dans la sidebar -->
+                {{-- <div class="input-group">
                     <span class="input-group-text text-body bg-white  border-end-0 ">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none"
                             viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -18,13 +20,11 @@
                         </svg>
                     </span>
                     <input type="text" class="form-control ps-0" placeholder="Search">
+                </div> --}}
+                            <!--fin de la nav bar-->
 
-                    <!-- si on fait ca y a un truc interressant y farede les mots recherché, mais ca ne marche pas -->
-                    {{-- <input href="{{ route('search') }}" method="GET" type="text" class="form-control ps-0" name="query" placeholder="Search"> --}}
-
-                </div>
             </div>
-
+           
             {{-- <form action="{{ route('search') }}" method="GET">
                 <input type="text" name="query" placeholder="Rechercher...">
                 <button type="submit">Rechercher</button>
