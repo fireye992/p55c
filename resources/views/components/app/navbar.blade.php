@@ -18,12 +18,21 @@
                         </svg>
                     </span>
                     <input type="text" class="form-control ps-0" placeholder="Search">
+
+                    <!-- si on fait ca y a un truc interressant y farede les mots recherché, mais ca ne marche pas -->
+                    {{-- <input href="{{ route('search') }}" method="GET" type="text" class="form-control ps-0" name="query" placeholder="Search"> --}}
+
                 </div>
             </div>
+
+            {{-- <form action="{{ route('search') }}" method="GET">
+                <input type="text" name="query" placeholder="Rechercher...">
+                <button type="submit">Rechercher</button>
+            </form> --}}
+            
             <div class="mb-0 font-weight-bold breadcrumb-text text-white">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-
                     <a href="login" onclick="event.preventDefault();
                 this.closest('form').submit();">
                         <button class="btn btn-sm  btn-white  mb-0 me-1" type="submit">Log out</button>
@@ -66,7 +75,7 @@
                             <a class="dropdown-item border-radius-md" href="javascript:;">
                                 <div class="d-flex py-1">
                                     <div class="my-auto">
-                                        <img src="{{ asset('storage/' . auth()->user()->profile_photo_path) }}" 
+                                        <img src="{{ asset('storage/' . auth()->user()->profile_photo_path) }}"
                                             class="avatar avatar-sm border-radius-sm  me-3 ">
                                     </div>
                                     <div class="d-flex flex-column justify-content-center">
@@ -141,7 +150,8 @@
                 </li>
                 <li class="nav-item ps-2 d-flex align-items-center">
                     <a href="http://localhost/laravel-examples/user-profile" class="nav-link text-body p-0">
-                        <img src="{{ asset('storage/' . auth()->user()->profile_photo_path) }}" alt="Profile Photo"class="avatar avatar-sm" />
+                        <img src="{{ asset('storage/' . auth()->user()->profile_photo_path) }}"
+                            alt="Profile Photo"class="avatar avatar-sm" />
                     </a>
                 </li>
             </ul>

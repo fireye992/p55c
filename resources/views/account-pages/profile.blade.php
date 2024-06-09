@@ -1,6 +1,7 @@
 <x-app-layout>
     {{-- @livewire('profile') --}}
     <div class="main-content position-relative bg-gray-100 max-height-vh-100 h-100">
+        <x-app.navbar />
         <div class="pt-7 pb-6 bg-cover"
             style="background-image: url('../assets/img/header-orange-purple.jpg'); background-position: bottom;">
         </div>

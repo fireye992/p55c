@@ -12,9 +12,14 @@ use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Controllers\DashrouselController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\SearchResultController;
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+// Route::get('/search', [SearchController::class, 'index'])->name('search');
+// Route::get('/search-result/{id}', [SearchResultController::class, 'show'])->name('search.result');
+
 
 Route::middleware(['auth', IsAdmin::class])->group(function () {
     Route::resource('carousel', CarouselController::class);

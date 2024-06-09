@@ -1,4 +1,6 @@
 <x-app-layout>
+
+    <a href="{{ route('carousel.index') }}" class="btn btn-sm  btn-white  mb-0 me-1" >Manage media</a>
     <div class="position-relative overflow-hidden">
         {{-- <h3 class="text-center">Horizontal Media</h3> --}}
         <div class="swiper mySwiper mt-4 mb-2 swiper-cards swiper-3d swiper-initialized swiper-horizontal swiper-pointer-events swiper-watch-progress">
