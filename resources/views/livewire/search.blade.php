@@ -1,44 +1,35 @@
-{{-- <div class="container mt-3">
-    <div class="input-group mb-3">
-        <input type="text" wire:model.debounce.300ms="query" class="form-control" placeholder="Search for...">
+<!-- resources/views/livewire/search.blade.php -->
+<div class="search-component">
+    <div class="input-group">
+        <input type="text" wire:model.debounce.500ms="query" placeholder="Search..." class="form-control" />
     </div>
 
-    @if($results->isNotEmpty())
-        <h2>Search Results for "{{ $query }}"</h2>
-        <div class="list-group">
-            @foreach ($results as $result)
-                <a href="{{ route('search.result', ['id' => $result->id]) }}" class="list-group-item list-group-item-action">
-                    {!! highlight(str_limit($result->content, 100), $query) !!}
-                </a>
-            @endforeach
-        </div>
+    @if(strlen($query) > 2)
+        <div class="results">
+            <h2>Utilisateurs</h2>
+            <ul>
+                @foreach($userResults as $user)
+                    <li>
+                        <a href="{{ route('users.show', $user->id) }}">
+                            Nom: {{ $user->name }}
+                        </a>
+                        <br>Email: {{ $user->email }}
+                        <br>Prénom: {{ $user->first_name }}
+                    </li>
+                @endforeach
+            </ul>
 
-        <div class="mt-3">
-            {{ $results->links() }} <!-- Pagination links -->
+            <h2>Pages</h2>
+            <ul>
+                @foreach($pageResults as $page)
+                    <li>
+                        <a href="{{ route('pages.show', $page->id) }}">
+                            {{ $page->title }}
+                        </a>
+                        <p>{{ Str::limit($page->content, 150) }}</p>
+                    </li>
+                @endforeach
+            </ul>
         </div>
-    @else
-        @if(!empty($query))
-            <p>No results found.</p>
-        @endif
     @endif
-</div> --}}
-
-{{-- VErsion Claude --}}
-
-{{-- @foreach($results as $result)
-    <h1>Recherche</h1>
-    <form action="{{ route('search') }}" method="GET">
-        <input type="text" name="query" placeholder="Rechercher...">
-        <button type="submit">Rechercher</button>
-    </form>
-@endforeach --}}
-
-{{--  autre version gpt --}}
-
-<x-app-layout>
-    <h1>Recherche</h1>
-    <form action="{{ route('search') }}" method="GET">
-        <input type="text" name="query" placeholder="Rechercher...">
-        <button type="submit">Rechercher</button>
-    </form>
-</x-app-layout>
+</div>

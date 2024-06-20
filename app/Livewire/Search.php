@@ -3,49 +3,39 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use Livewire\WithPagination;
-use App\Models\SearchModel;
+use App\Models\User;
+use App\Models\Page;
 
 class Search extends Component
 {
-    use WithPagination;
-
     public $query = '';
-    public $results;
-
-    protected $updatesQueryString = ['query'];
-
-    public function mount()
-    {
-        $this->results = collect(); // Initialisez la propriété $results comme une collection vide
-    }
+    public $userResults = [];
+    public $pageResults = [];
 
     public function updatedQuery()
     {
-        $this->resetPage();
         $this->search();
     }
 
     public function search()
     {
-    
+        if (strlen($this->query) > 2) {
+            $this->userResults = User::where('name', 'LIKE', "%{$this->query}%")
+                                    ->orWhere('email', 'LIKE', "%{$this->query}%")
+                                    ->orWhere('first_name', 'LIKE', "%{$this->query}%")
+                                    ->get();
 
-        if (!empty($this->query)) {
-            $this->results = SearchModel::where('content', 'like', '%' . $this->query . '%')
-                                        ->orWhere('html_content', 'like', '%' . $this->query . '%')
-                                        ->paginate(5);
-
-
+            $this->pageResults = Page::where('title', 'LIKE', "%{$this->query}%")
+                                    ->orWhere('content', 'LIKE', "%{$this->query}%")
+                                    ->get();
         } else {
-            $this->results = collect(); // Utiliser une collection vide par défaut
-
+            $this->userResults = [];
+            $this->pageResults = [];
         }
     }
 
     public function render()
     {
-        return view('livewire.search', [
-            'results' => $this->results
-        ]);
+        return view('livewire.search');
     }
 }

@@ -12,4 +12,10 @@ class UserController extends Controller
         $users = User::all();
         return view('laravel-examples.users-management', compact('users'));
     }
+    
+    public function show($id)
+    {
+        $user = User::findOrFail($id);
+        return view('users.show', compact('user'));
+    }
 }

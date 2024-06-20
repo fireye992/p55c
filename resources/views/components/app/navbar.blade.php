@@ -2,15 +2,16 @@
     <div class="container-fluid py-1 px-2">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-transparent mb-1 pb-0 pt-1 px-0 me-sm-6 me-5">
-                <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">{{ Route::currentRouteName() }}</a></li>
+                <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark"
+                        href="javascript:;">{{ Route::currentRouteName() }}</a></li>
                 {{-- <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li> --}}
             </ol>
             {{-- <h6 class="font-weight-bold mb-0">{{ Route::currentRouteName() }}</h6> --}}
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                
-                        <!-- searchbar que je vais mettre dans la sidebar -->
+
+                <!-- searchbar que je vais mettre dans la sidebar -->
                 {{-- <div class="input-group">
                     <span class="input-group-text text-body bg-white  border-end-0 ">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none"
@@ -21,22 +22,39 @@
                     </span>
                     <input type="text" class="form-control ps-0" placeholder="Search">
                 </div> --}}
-                            <!--fin de la nav bar-->
-
+                <!--fin de la nav bar-->
+                @livewire('search')
             </div>
-           
+
             {{-- <form action="{{ route('search') }}" method="GET">
                 <input type="text" name="query" placeholder="Rechercher...">
                 <button type="submit">Rechercher</button>
             </form> --}}
-            
-            <div class="mb-0 font-weight-bold breadcrumb-text text-white">
+
+            <!-- Contenu de la barre de navigation -->
+            {{-- <form action="{{ route('search') }}" method="GET" class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" name="query" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form> --}}
+
+
+
+            {{-- < class="mb-0 font-weight-bold breadcrumb-text text-white">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <a href="login" onclick="event.preventDefault();
                 this.closest('form').submit();">
                         <button class="btn btn-sm  btn-white  mb-0 me-1" type="submit">Log out</button>
                     </a>
+                </form> --}}
+            <div>
+                <a class="nav-link position-relative ms-0 ps-2 py-2" href="#"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <i class="ni ni-user-run"></i>
+                    <span class="nav-link-text ms-1" />
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
                 </form>
             </div>
             <ul class="navbar-nav  justify-content-end">
@@ -155,7 +173,6 @@
                     </a>
                 </li>
             </ul>
-        </div>
     </div>
 </nav>
 <!-- End Navbar -->
