@@ -19,15 +19,15 @@
         <meta name="description" content="Camp d’entraînement de Muay Thai & MMA Nord Strasbourg.
         Gymnase Mermoz & Kwartz 2 rue Perle.">
         <meta name="keywords"
-            content="creative tim, updivision, html dashboard, laravel, api, html css dashboard laravel,  Corporate UI Dashboard Laravel,  Corporate UI Laravel,  Corporate Dashboard Laravel, UI Dashboard Laravel, Laravel admin, laravel dashboard, Laravel dashboard, laravel admin, web dashboard, bootstrap 5 dashboard laravel, bootstrap 5, css3 dashboard, bootstrap 5 admin laravel, frontend, responsive bootstrap 5 dashboard, corporate dashboard laravel,  Corporate UI Dashboard Laravel">
-        <meta property="og:app_id" content="655968634437471">
+            content="muay thai, boxe thailandaise, fenrir, kots, akari, kick boxing, Schiltigheim, Strasbourg, MMA, Mixed Martial Arts, Fight club, PSSC, Combat">
+        {{-- <meta property="og:app_id" content="655968634437471">
         <meta property="og:type" content="product">
         <meta property="og:title" content="Corporate UI Dashboard Laravel by Creative Tim & UPDIVISION">
         <meta property="og:url" content="https://www.creative-tim.com/live/corporate-ui-dashboard-laravel">
-        {{-- <meta property="og:image"
+        <meta property="og:image"
             content="https://s3.amazonaws.com/creativetim_bucket/products/737/original/corporate-ui-dashboard-laravel.jpg?1695288974">
-        <meta property="product:price:amount" content="FREE"> --}}
-        {{-- <meta property="product:price:currency" content="EUR">
+        <meta property="product:price:amount" content="FREE">
+        <meta property="product:price:currency" content="EUR">
         <meta property="product:availability" content="in Stock">
         <meta property="product:brand" content="Creative Tim">
         <meta property="product:category" content="Admin &amp; Dashboards">

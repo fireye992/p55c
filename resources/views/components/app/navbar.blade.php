@@ -149,7 +149,7 @@
                     </ul>
                 </li>
                 <li class="nav-item ps-2 d-flex align-items-center">
-                    <a href="http://localhost/laravel-examples/user-profile" class="nav-link text-body p-0">
+                    <a href="{{ route('profile') }}" class="nav-link text-body p-0">
                         <img src="{{ asset('storage/' . auth()->user()->profile_photo_path) }}"
                             alt="Profile Photo"class="avatar avatar-sm" />
                     </a>

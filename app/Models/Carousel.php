@@ -10,6 +10,6 @@ class Carousel extends Model
     use HasFactory;
 
     protected $fillable = [
-        'media_path', 'media_type',
+        'media_path', 'media_type'
     ];
 }

@@ -56,15 +56,15 @@ class ProfileController extends Controller
 
         $request->validate([
             'first_name' => 'required|min:3|max:44',
-            'name' => 'required|min:3|max:255',
+            'name' => 'required|min:3|max:111',
             'email' => 'required|email|max:255|unique:users,email,' . Auth::id(),
-            'city' => 'max:255',
+            'city' => 'max:55',
             'phone' => 'numeric|digits:10',
             'zip_code' => 'numeric|digits:5',
             'address' => 'nullable|string|min:8',            
             'birth_date' => 'nullable|date_format:d/m/Y',
             'activity_type' => ['nullable', Rule::in(['loisir', 'competition'])],
-            'photo' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048', // Max 2MB file
+            'photo' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp|max:2048', // Max 2MB file
             'about' => 'nullable|string|max:500',
         ], [
             'name.required' => 'Name is required',
@@ -105,7 +105,7 @@ class ProfileController extends Controller
         // Log::info('Photo updated for user: ' . $user->id . ' with path: ' . $user->profile_photo_path);
     }
     
-
-        return back()->with('success', 'Profile updated successfully.');
+    return redirect()->route('profile')->with('success', 'Profile updated successfully.');
+        // return back()->with('success', 'Profile updated successfully.');
     }
 }
