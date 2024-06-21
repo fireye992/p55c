@@ -47,7 +47,7 @@
                         <button class="btn btn-sm  btn-white  mb-0 me-1" type="submit">Log out</button>
                     </a>
                 </form> --}}
-            <div>
+            {{-- <div>
                 <a class="nav-link position-relative ms-0 ps-2 py-2" href="#"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <i class="ni ni-user-run"></i>
@@ -56,7 +56,7 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
-            </div>
+            </div> --}}
             <ul class="navbar-nav  justify-content-end">
                 <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                     <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
