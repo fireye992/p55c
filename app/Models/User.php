@@ -85,6 +85,35 @@ class User extends Authenticatable
         $this->profile_photo_path = $path;
         $this->save();
     }
+
+    //Followers
+    public function followers()
+    {
+        return $this->hasMany(Follow::class, 'user_id');
+    }
+
+    public function following()
+    {
+        return $this->hasMany(Follow::class, 'follower_id');
+    }
+
+    //Private message 
+    public function sentMessages()
+    {
+        return $this->hasMany(Message::class, 'from_user_id');
+    }
+
+    public function receivedMessages()
+    {
+        return $this->hasMany(Message::class, 'to_user_id');
+    }
+
+    //exped id
+    public function sender()
+{
+    return $this->belongsTo(User::class, 'from_user_id');
+}
+
 }
 
 ///////////////////////////////////////////////////////////////

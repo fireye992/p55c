@@ -13,6 +13,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Controllers\MediasController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\FollowController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SearchResultController;
 use App\Livewire\Profile;
@@ -22,7 +24,18 @@ Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallba
 // Route::get('/search', [SearchController::class, 'index'])->name('search');
 // Route::get('/search-result/{id}', [SearchResultController::class, 'show'])->name('search.result');
 Route::get('/pages/{id}', [PageController::class, 'show'])->name('pages.show');
-Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
+Route::get('/users/{name}', [UserController::class, 'show'])->name('users.show');
+
+// Afficher le profil d'un utilisateur
+// Route::get('/profile/{username}', [ProfileController::class, 'show'])->name('profile.show');
+
+// Suivre et ne plus suivre un utilisateur
+Route::post('/follow/{name}', [FollowController::class, 'follow'])->name('follow');
+Route::post('/unfollow/{name}', [FollowController::class, 'unfollow'])->name('unfollow');
+
+// Messagerie
+Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
+Route::post('/messages/send/{name}', [MessageController::class, 'send'])->name('messages.send');
 
 
 Route::middleware(['auth', IsAdmin::class])->group(function () {
@@ -37,7 +50,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-     Route::get('/medias', [MediasController::class, 'index'])->name('Medias');
+    Route::get('/medias', [MediasController::class, 'index'])->name('Medias');
     
     // Route::get('/dashboard', function () {
     //     return view('dashboard');

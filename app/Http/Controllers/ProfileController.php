@@ -108,4 +108,11 @@ class ProfileController extends Controller
     return redirect()->route('profile')->with('success', 'Profile updated successfully.');
         // return back()->with('success', 'Profile updated successfully.');
     }
+
+    //fonction show pourles fallow et messages
+    public function show($username)
+    {
+        $user = User::where('username', $username)->firstOrFail();
+        return view('profile.show', compact('user'));
+    }
 }

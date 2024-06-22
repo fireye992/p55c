@@ -42,7 +42,7 @@
         </div>
         <div class="container my-3 py-3">
             <div class="row">
-                <div class="col-12 col-xl-4 mb-4">
+                {{-- <div class="col-12 col-xl-4 mb-4">
                     <div class="card border shadow-xs h-100">
                         <div class="card-header pb-0 p-3">
                             <h6 class="mb-0 font-weight-semibold text-lg">Notifications settings</h6>
@@ -106,8 +106,8 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                <div class="col-12 col-xl-4 mb-4">
+                </div> --}}
+                <div class="col-12 col-12 mb-4">
                     <div class="card border shadow-xs h-100">
                         <div class="card-header pb-0 p-3">
                             <div class="row">
@@ -170,7 +170,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-xl-4 mb-4">
+                {{-- <div class="col-12 col-xl-4 mb-4">
                     <div class="card border shadow-xs h-100">
                         <div class="card-header pb-0 p-3">
                             <div class="row mb-sm-0 mb-2">
@@ -268,7 +268,7 @@
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="col-12">
                     <div class="card shadow-xs border mb-4 pb-3">
                         <div class="card-header pb-0 p-3">

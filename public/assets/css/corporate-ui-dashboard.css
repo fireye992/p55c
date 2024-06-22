@@ -27577,3 +27577,23 @@ button.swiper-pagination-bullet {
 }
 
 /*# sourceMappingURL=dashboard-free.css.map */
+
+/*ECF*/
+/* Ajoutez ce CSS dans votre fichier CSS principal ou dans un style <style> à l'intérieur du template */
+.dropdown-item-cs {
+  padding: 0.5rem 1rem;
+  color: #212529;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-item-cs:hover, .dropdown-item-cs:focus {
+  color: #16181b;
+  text-decoration: none;
+  background-color: #f8f9fa;
+}
+
+.list-item-hover:hover {
+  background-color: #f0f0f0; /* Changez la couleur de fond selon vos préférences */
+  cursor: pointer;
+}
