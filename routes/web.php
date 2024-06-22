@@ -15,6 +15,7 @@ use App\Http\Controllers\MediasController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SearchResultController;
+use App\Livewire\Profile;
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
@@ -30,7 +31,9 @@ Route::middleware(['auth', IsAdmin::class])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile.edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    // Route::get('/profile.edit', [Profile::class, 'edit'])->name('profile.edit');
     Route::put('/profile.edit', [ProfileController::class, 'update'])->name('profile.update');
+    // Route::put('/profile.edit', [Profile::class, 'update'])->name('profile.update');
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -52,9 +55,9 @@ Route::middleware(['auth'])->group(function () {
         return view('RTL');
     })->name('RTL');
 
-    Route::get('/laravel-examples/user-profile', [ProfileController::class, 'index'])->name('users.profile');
-    Route::put('/laravel-examples/user-profile/update', [ProfileController::class, 'update'])->name('users.update');
-    Route::get('/laravel-examples/users-management', [UserController::class, 'index'])->name('users-management');
+    Route::get('utilisateur/user-profile', [ProfileController::class, 'index'])->name('users.profile');
+    Route::put('utilisateur/user-profile/update', [ProfileController::class, 'update'])->name('users.update');
+    Route::get('utilisateur/users-management', [UserController::class, 'index'])->name('users-management');
 });
 
 Route::get('/', function () {

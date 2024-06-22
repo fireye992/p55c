@@ -18,7 +18,8 @@ class Search extends Component
     // Déclaration de la propriété $excludePages
     protected $excludePages = [
         'auth/two-factor-challenge',
-        'auth/welcome'
+        'welcome',
+        'profile/two-factor-authentication-form'
         // Ajoutez d'autres pages à exclure ici
     ];
 

@@ -10,7 +10,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('laravel-examples.users-management', compact('users'));
+        return view('utilisateur.users-management', compact('users'));
     }
     
     public function show($id)
