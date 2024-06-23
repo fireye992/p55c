@@ -14,13 +14,18 @@ class Search extends Component
     public $userResults = [];
     public $pageResults = [];
 
-    
-    // Déclaration de la propriété $excludePages
-    protected $excludePages = [
-        'auth/two-factor-challenge',
-        'welcome',
-        'profile/two-factor-authentication-form'
-        // Ajoutez d'autres pages à exclure ici
+    // Déclaration de la propriété $includePages
+    protected $includePages = [
+        'dashboard',
+        'users/{name}',
+        'wallet',
+        'table',
+        'utilisateur/user-profile',
+        'pages/about',
+        'pages/contact',
+        'media',
+        'profile',
+        // Ajoutez d'autres pages à inclure ici
     ];
 
     public function mount()
@@ -45,53 +50,45 @@ class Search extends Component
                 ->orWhere('email', 'LIKE', $words)
                 ->get();
 
-  
-                $this->pageResults = $this->searchBladeFiles($this->query);
-            } else {
-                $this->userResults = [];
-                $this->pageResults = [];
-            }
-        }
-    
-        private function searchBladeFiles($query)
-        {
-            $results = [];
-            $bladeFiles = File::allFiles(resource_path('views'));
-    
-            foreach ($bladeFiles as $file) {
-                $relativePath = str_replace(resource_path('views') . '/', '', $file->getRealPath());
-                $relativePath = str_replace('.blade.php', '', $relativePath);
-    
-                if ($this->shouldExcludePage($relativePath)) {
-                    continue;
-                }
-    
-                $content = File::get($file->getRealPath());
-                if (stripos($content, $query) !== false /*&& $this->hasAccessToPage($relativePath) */) {
-                    $results[] = [
-                        'title' => $file->getFilename(),
-                        'path' => $relativePath
-                    ];
-                }
-            }
-    
-            return $results;
-        }
-    
-        private function shouldExcludePage($path)
-        {
-            return in_array($path, $this->excludePages);
-        }
-    
-        // private function hasAccessToPage($path)
-        // {
-        //     // Logique pour vérifier les privilèges de l'utilisateur
-        //     // Remplacez par votre propre logique de vérification des privilèges
-        //     return Auth::user()->can('view', $path);
-        // }
-    
-        public function render()
-        {
-            return view('livewire.search');
+            $this->pageResults = $this->searchBladeFiles($this->query);
+        } else {
+            $this->userResults = [];
+            $this->pageResults = [];
         }
     }
+
+    private function searchBladeFiles($query)
+    {
+        $results = [];
+        $bladeFiles = File::allFiles(resource_path('views'));
+
+        foreach ($bladeFiles as $file) {
+            $relativePath = str_replace(resource_path('views') . '/', '', $file->getRealPath());
+            $relativePath = str_replace('.blade.php', '', $relativePath);
+
+            if (!$this->shouldIncludePage($relativePath)) {
+                continue;
+            }
+
+            $content = File::get($file->getRealPath());
+            if (stripos($content, $query) !== false) {
+                $results[] = [
+                    'title' => basename($relativePath), // Supprimer le chemin complet et ne garder que le nom de fichier sans extension
+                    'path' => $relativePath
+                ];
+            }
+        }
+
+        return $results;
+    }
+
+    private function shouldIncludePage($path)
+    {
+        return in_array($path, $this->includePages);
+    }
+
+    public function render()
+    {
+        return view('livewire.search');
+    }
+}

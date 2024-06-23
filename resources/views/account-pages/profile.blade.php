@@ -147,6 +147,43 @@
                                 </li>
                                 <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm">
                                     <span class="text-secondary">Social:</span> &nbsp;
+                                    @foreach (auth()->user()->social_links as $link)
+                                        @php
+                                            $icon = '';
+                                            if (strpos($link, 'linkedin.com') !== false) {
+                                                $icon = 'fab fa-linkedin';
+                                            } elseif (strpos($link, 'github.com') !== false) {
+                                                $icon = 'fab fa-github';
+                                            } elseif (strpos($link, 'slack.com') !== false) {
+                                                $icon = 'fab fa-slack';
+                                            } elseif (strpos($link, 'instagram.com') !== false) {
+                                                $icon = 'fab fa-instagram';
+                                            } elseif (strpos($link, 'facebook.com') !== false) {
+                                                $icon = 'fab fa-facebook';
+                                            } elseif (strpos($link, 'twitter.com') !== false) {
+                                                $icon = 'fab fa-twitter';
+                                            } elseif (strpos($link, 'youtube.com') !== false) {
+                                                $icon = 'fab fa-youtube';
+                                            } elseif (strpos($link, 'snapchat.com') !== false) {
+                                                $icon = 'fab fa-snapchat';
+                                            } elseif (strpos($link, 'tiktok.com') !== false) {
+                                                $icon = 'fab fa-tiktok';
+                                            } elseif (strpos($link, 'telegram.org') !== false) {
+                                                $icon = 'fab fa-telegram';
+                                            }
+                                        @endphp
+                                        @if ($icon)
+                                            <a class="btn btn-link text-dark mb-0 ps-1 pe-1 py-0"
+                                                href="{{ $link }}" target="_blank">
+                                                <i class="{{ $icon }} fa-lg"></i>
+                                            </a>
+                                        @endif
+                                    @endforeach
+                                </li>
+
+
+                                {{-- <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm">
+                                    <span class="text-secondary">Social:</span> &nbsp;
                                     <a class="btn btn-link text-dark mb-0 ps-1 pe-1 py-0" href="javascript:;">
                                         <i class="fab fa-linkedin fa-lg"></i>
                                     </a>
@@ -156,7 +193,7 @@
                                     <a class="btn btn-link text-dark mb-0 ps-1 pe-1 py-0" href="javascript:;">
                                         <i class="fab fa-slack fa-lg"></i>
                                     </a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
                     </div>
@@ -182,81 +219,7 @@
                             </div>
                         </div>
                         <div class="card-body p-3 pt-0">
-                            <ul class="list-group">
-                                <li class="list-group-item border-0 d-flex align-items-center px-0 mb-1">
-                                    <div class="avatar avatar-sm rounded-circle me-2">
-                                        <img src="../assets/img/team-1.jpg" alt="kal" class="w-100">
-                                    </div>
-                                    <div class="d-flex align-items-start flex-column justify-content-center">
-                                        <h6 class="mb-0 text-sm font-weight-semibold">Sarah Lamalo</h6>
-                                        <p class="mb-0 text-sm text-secondary">Hi! I need more information about ...
-                                        </p>
-                                    </div>
-                                    <span class="p-1 bg-success rounded-circle ms-auto me-3">
-                                        <span class="visually-hidden">Online</span>
-                                    </span>
-                                </li>
-                                <li class="list-group-item border-0 d-flex align-items-center px-0 mb-1">
-                                    <div class="avatar avatar-sm rounded-circle me-2">
-                                        <img src="../assets/img/marie.jpg" alt="kal" class="w-100">
-                                    </div>
-                                    <div class="d-flex align-items-start flex-column justify-content-center">
-                                        <h6 class="mb-0 text-sm font-weight-semibold">Vicky Hladynets</h6>
-                                        <p class="mb-0 text-sm text-secondary">Hello, Noah!</p>
-                                    </div>
-                                    <span class="p-1 bg-success rounded-circle ms-auto me-3">
-                                        <span class="visually-hidden">Online</span>
-                                    </span>
-                                </li>
-                                <li class="list-group-item border-0 d-flex align-items-center px-0 mb-1">
-                                    <div class="avatar avatar-sm rounded-circle me-2">
-                                        <img src="../assets/img/team-5.jpg" alt="kal" class="w-100">
-                                    </div>
-                                    <div class="d-flex align-items-start flex-column justify-content-center">
-                                        <h6 class="mb-0 text-sm font-weight-semibold">Charles Deluvio</h6>
-                                        <p class="mb-0 text-sm text-secondary">Great, thank you!</p>
-                                    </div>
-                                    <span class="p-1 bg-success rounded-circle ms-auto me-3">
-                                        <span class="visually-hidden">Online</span>
-                                    </span>
-                                </li>
-                                <li class="list-group-item border-0 d-flex align-items-center px-0 mb-1">
-                                    <div class="avatar avatar-sm rounded-circle me-2">
-                                        <img src="../assets/img/team-4.jpg" alt="kal" class="w-100">
-                                    </div>
-                                    <div class="d-flex align-items-start flex-column justify-content-center">
-                                        <h6 class="mb-0 text-sm font-weight-semibold">Leio Mclaren</h6>
-                                        <p class="mb-0 text-sm text-secondary">Don't worry! 🙏🏻</p>
-                                    </div>
-                                    <span class="p-1 bg-success rounded-circle ms-auto me-3">
-                                        <span class="visually-hidden">Online</span>
-                                    </span>
-                                </li>
-                                <li class="list-group-item border-0 d-flex align-items-center px-0 mb-1">
-                                    <div class="avatar avatar-sm rounded-circle me-2">
-                                        <img src="../assets/img/team-3.jpg" alt="kal" class="w-100">
-                                    </div>
-                                    <div class="d-flex align-items-start flex-column justify-content-center">
-                                        <h6 class="mb-0 text-sm font-weight-semibold">Mateus Campos</h6>
-                                        <p class="mb-0 text-sm text-secondary">Call me, please.</p>
-                                    </div>
-                                    <span class="p-1 bg-success rounded-circle ms-auto me-3">
-                                        <span class="visually-hidden">Online</span>
-                                    </span>
-                                </li>
-                                <li class="list-group-item border-0 d-flex align-items-center px-0 mb-1">
-                                    <div class="avatar avatar-sm rounded-circle me-2">
-                                        <img src="../assets/img/team-2.jpg" alt="kal" class="w-100">
-                                    </div>
-                                    <div class="d-flex align-items-start flex-column justify-content-center">
-                                        <h6 class="mb-0 text-sm font-weight-semibold">Miriam Lore</h6>
-                                        <p class="mb-0 text-sm text-secondary">Well done!</p>
-                                    </div>
-                                    <span class="p-1 bg-success rounded-circle ms-auto me-3">
-                                        <span class="visually-hidden">Online</span>
-                                    </span>
-                                </li>
-                            </ul>
+                            @livewire('chat')
                         </div>
                     </div>
                 </div>

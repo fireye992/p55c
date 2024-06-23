@@ -159,15 +159,24 @@
                                         @enderror
                                     </div>
                                 </div>
-
-                                <div class="form-group">
+                                <div class="row">
+                                <div class="col-6">
                                     <label for="photo">Photo</label>
                                     <input type="file" class="form-control" id="photo" name="photo">
                                     @error('photo')
                                         <span class="text-danger text-sm">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                
+
+                                <div class="col-6">
+                                    <label for="social_links">Social Links (comma separated)</label>
+                                    <input type="text" name="social_links" id="social_links" 
+                                    value="{{ old('social_links', implode(',', auth()->user()->social_links)) }}" class="form-control">
+                                    @error('social_links')
+                                        <span class="text-danger text-sm">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
                      
                                 <div class="row p-2">
                                     <label for="about">About me</label>
@@ -176,6 +185,9 @@
                                         <span class="text-danger text-sm">{{ $message }}</span>
                                     @enderror
                                 </div>
+
+                               
+                                
                                 <button type="submit" class="mt-6 mb-0 btn btn-white btn-sm float-end">Save
                                     changes</button>
                             </div>

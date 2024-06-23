@@ -26,9 +26,6 @@ Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallba
 Route::get('/pages/{id}', [PageController::class, 'show'])->name('pages.show');
 Route::get('/users/{name}', [UserController::class, 'show'])->name('users.show');
 
-// Afficher le profil d'un utilisateur
-// Route::get('/profile/{username}', [ProfileController::class, 'show'])->name('profile.show');
-
 // Suivre et ne plus suivre un utilisateur
 Route::post('/follow/{name}', [FollowController::class, 'follow'])->name('follow');
 Route::post('/unfollow/{name}', [FollowController::class, 'unfollow'])->name('unfollow');
@@ -76,7 +73,6 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/', function () {
     return redirect('/dashboard');
 })->middleware('auth');
-
 
 
 Route::get('/profile', function () {

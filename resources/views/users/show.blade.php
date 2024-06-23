@@ -114,7 +114,7 @@
                                 <div class="col-md-8 col-9">
                                     <h6 class="mb-0 font-weight-semibold text-lg">Profile information</h6>
                                     <p class="text-sm mb-1">
-                                        @if (auth()->user()->is_admin)
+                                        @if ($user->is_admin)
                                             <span style="color: red;">Administrateur</span>
                                         @endif
                                     </p>
@@ -134,37 +134,62 @@
                         </div>
                         <div class="card-body p-3">
                             <p name="about" id="about" rows="5" class="text-sm mb-4">
-                                {{ auth()->user()->about }}</p>
+                                {{ $user->about }}</p>
                             <ul class="list-group">
                                 <li
                                     class="list-group-item border-0 ps-0 text-dark font-weight-semibold pt-0 pb-1 text-sm">
                                     <span class="text-secondary">First Name:</span> &nbsp;
-                                    {{ auth()->user()->first_name }}
+                                    {{ $user->first_name }}
                                 </li>
                                 <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm">
-                                    <span class="text-secondary">Last Name:</span> &nbsp; {{ auth()->user()->name }}
+                                    <span class="text-secondary">Last Name:</span> &nbsp; {{ $user->name }}
                                 </li>
                                 <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm">
-                                    <span class="text-secondary">Mobile:</span> &nbsp; {{ auth()->user()->phone }}
+                                    <span class="text-secondary">Mobile:</span> &nbsp; {{ $user->phone }}
                                 </li>
                                 <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm">
                                     <span class="text-secondary">Activité:</span> &nbsp;
-                                    {{ auth()->user()->activity_type }}
+                                    {{ $user->activity_type }}
                                 </li>
                                 <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm">
-                                    <span class="text-secondary">Location:</span> &nbsp; {{ auth()->user()->city }}
+                                    <span class="text-secondary">Location:</span> &nbsp; {{ $user->city }}
                                 </li>
                                 <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm">
                                     <span class="text-secondary">Social:</span> &nbsp;
-                                    <a class="btn btn-link text-dark mb-0 ps-1 pe-1 py-0" href="javascript:;">
-                                        <i class="fab fa-linkedin fa-lg"></i>
-                                    </a>
-                                    <a class="btn btn-link text-dark mb-0 ps-1 pe-1 py-0" href="javascript:;">
-                                        <i class="fab fa-github fa-lg"></i>
-                                    </a>
-                                    <a class="btn btn-link text-dark mb-0 ps-1 pe-1 py-0" href="javascript:;">
-                                        <i class="fab fa-slack fa-lg"></i>
-                                    </a>
+                                    @foreach ($user->social_links as $link)
+                                    @php
+                                        $icon = '';
+                                        if (strpos($link, 'linkedin.com') !== false) {
+                                            $icon = 'fab fa-linkedin';
+                                        } elseif (strpos($link, 'github.com') !== false) {
+                                            $icon = 'fab fa-github';
+                                        } elseif (strpos($link, 'slack.com') !== false) {
+                                            $icon = 'fab fa-slack';
+                                        } elseif (strpos($link, 'instagram.com') !== false) {
+                                            $icon = 'fab fa-instagram';
+                                        } elseif (strpos($link, 'facebook.com') !== false) {
+                                            $icon = 'fab fa-facebook';
+                                        } elseif (strpos($link, 'twitter.com') !== false) {
+                                            $icon = 'fab fa-twitter';
+                                        } elseif (strpos($link, 'youtube.com') !== false) {
+                                            $icon = 'fab fa-youtube';
+                                        } elseif (strpos($link, 'snapchat.com') !== false) {
+                                            $icon = 'fab fa-snapchat';
+                                        } elseif (strpos($link, 'tiktok.com') !== false) {
+                                            $icon = 'fab fa-tiktok';
+                                        } elseif (strpos($link, 'telegram.org') !== false) {
+                                            $icon = 'fab fa-telegram';
+                                        }
+                                    @endphp
+                                    @if ($icon)
+                                        <a class="btn btn-link text-dark mb-0 ps-1 pe-1 py-0"
+                                            href="{{ $link }}" target="_blank">
+                                            <i class="{{ $icon }} fa-lg"></i>
+                                        </a>
+                                    @endif
+                                @endforeach
+                            </li>
+
                                 </li>
                             </ul>
                         </div>

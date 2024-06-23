@@ -66,6 +66,7 @@ class ProfileController extends Controller
             'activity_type' => ['nullable', Rule::in(['loisir', 'competition'])],
             'photo' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp|max:2048', // Max 2MB file
             'about' => 'nullable|string|max:500',
+            'social_links' => 'nullable|string|max:500',
         ], [
             'name.required' => 'Name is required',
             'email.required' => 'Email is required',
@@ -86,6 +87,7 @@ class ProfileController extends Controller
             'address' => $request->address,
             'birth_date' => $birth_date,
             'activity_type' => $request->activity_type,
+            'social_links' => $request->social_links,
 
         ]);
 
