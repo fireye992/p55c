@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -17,5 +19,13 @@ class UserController extends Controller
     {
         $user = User::where('name', $name)->firstOrFail();
         return view('users.show', compact('user'));
+    }
+
+    
+    public function updateActivity(Request $request)
+    {
+        $user = Auth::user();
+        $user->last_activity = Carbon::now();
+        $user->save();
     }
 }

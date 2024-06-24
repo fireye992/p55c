@@ -27597,3 +27597,16 @@ button.swiper-pagination-bullet {
   background-color: #f0f0f0; /* Changez la couleur de fond selon vos préférences */
   cursor: pointer;
 }
+
+/*Pour le grisé du chat */
+.user-list .user-item {
+  transition: background-color 0.3s;
+}
+
+.user-list .user-item:hover {
+  background-color: #f0f0f0; /* Changez cette couleur selon vos préférences */
+}
+
+.user-list .user-item a {
+  color: inherit;
+}

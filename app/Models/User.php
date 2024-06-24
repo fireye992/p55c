@@ -40,6 +40,7 @@ class User extends Authenticatable
         'about',
         'is_admin',
         'social_links',
+        'last_activity',
 
     ];
 
@@ -120,5 +121,16 @@ class User extends Authenticatable
     public function sender()
     {
         return $this->belongsTo(User::class, 'from_user_id');
+    }
+
+    public function isOnline()
+    {
+        return $this->last_activity && Carbon::parse($this->last_activity)->gt(Carbon::now()->subMinutes(5));
+    }
+    
+    public function updateActivity()
+    {
+        $this->last_activity = Carbon::now();
+        $this->save();
     }
 }

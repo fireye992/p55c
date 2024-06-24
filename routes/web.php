@@ -25,6 +25,7 @@ Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallba
 // Route::get('/search-result/{id}', [SearchResultController::class, 'show'])->name('search.result');
 Route::get('/pages/{id}', [PageController::class, 'show'])->name('pages.show');
 Route::get('/users/{name}', [UserController::class, 'show'])->name('users.show');
+Route::post('/update-activity', [UserController::class, 'updateActivity'])->middleware('auth');
 
 // Suivre et ne plus suivre un utilisateur
 Route::post('/follow/{name}', [FollowController::class, 'follow'])->name('follow');

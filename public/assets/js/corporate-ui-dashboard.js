@@ -410,4 +410,21 @@ function sidenavTypeOnResize() {
       el.classList.remove('disabled');
     });
   }
+
+// temps de refresh voyant vert ECF
+
+document.addEventListener("DOMContentLoaded", function() {
+    function updateActivity() {
+        fetch('/update-activity', { 
+            method: 'POST', 
+            headers: { 
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') 
+            } 
+        });
+    }
+
+    setInterval(updateActivity, 300000); // 5 minutes
+    updateActivity(); // Mettre à jour immédiatement lors du chargement de la page
+});
+
 }
