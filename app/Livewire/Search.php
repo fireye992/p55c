@@ -20,11 +20,12 @@ class Search extends Component
         'users/{name}',
         'wallet',
         'table',
-        'utilisateur/user-profile',
         'pages/about',
         'pages/contact',
-        'media',
+        'medias',
         'profile',
+        'chatRoom',
+        'users-list',
         // Ajoutez d'autres pages à inclure ici
     ];
 

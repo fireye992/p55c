@@ -27610,3 +27610,34 @@ button.swiper-pagination-bullet {
 .user-list .user-item a {
   color: inherit;
 }
+
+/*chat*/
+.chat-container {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  max-height: 500px;
+  overflow-y: scroll;
+  background-color: #f9f9f9; /* Fond plus clair pour les messages */
+}
+
+.message {
+  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.my-message {
+  background-color: #EEF; /* Vert clair pour les messages personnels */
+  text-align: right;
+}
+
+.other-message {
+  background-color:#FFF; /* Rouge clair pour les messages de l'interlocuteur */
+  text-align: left;
+}
+
+.highlight {
+  background-color: yellow;
+  transition: background-color 1s;
+}

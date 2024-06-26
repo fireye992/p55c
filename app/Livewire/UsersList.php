@@ -6,7 +6,7 @@ use Livewire\Component;
 use App\Models\User;
 use Carbon\Carbon;
 
-class Chat extends Component
+class UsersList extends Component
 {
     public $users;
 
@@ -22,7 +22,7 @@ class Chat extends Component
             return $user;
         })->sortByDesc('is_online');
 
-        return view('livewire.chat', [
+        return view('livewire.users-list', [
             'users' => $this->users
         ]);
     }

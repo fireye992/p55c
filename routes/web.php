@@ -17,42 +17,45 @@ use App\Http\Controllers\FollowController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SearchResultController;
+use App\Livewire\ChatRoom;
 use App\Livewire\Profile;
+use App\Models\User;
 
-Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
-Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
-// Route::get('/search', [SearchController::class, 'index'])->name('search');
-// Route::get('/search-result/{id}', [SearchResultController::class, 'show'])->name('search.result');
-Route::get('/pages/{id}', [PageController::class, 'show'])->name('pages.show');
-Route::get('/users/{name}', [UserController::class, 'show'])->name('users.show');
-Route::post('/update-activity', [UserController::class, 'updateActivity'])->middleware('auth');
+// Routes pour les invités (guest)
+Route::middleware('guest')->group(function () {
+    Route::get('/signin', function () {
+        return view('account-pages.signin');
+    })->name('signin');
 
-// Suivre et ne plus suivre un utilisateur
-Route::post('/follow/{name}', [FollowController::class, 'follow'])->name('follow');
-Route::post('/unfollow/{name}', [FollowController::class, 'unfollow'])->name('unfollow');
+    Route::get('/signup', function () {
+        return view('account-pages.signup');
+    })->name('signup');
 
-// Messagerie
-Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
-Route::post('/messages/send/{name}', [MessageController::class, 'send'])->name('messages.send');
+    Route::get('/sign-up', [RegisterController::class, 'create'])->name('sign-up');
+    Route::post('/sign-up', [RegisterController::class, 'store']);
 
+    Route::get('/sign-in', [LoginController::class, 'create'])->name('sign-in');
+    Route::post('/sign-in', [LoginController::class, 'store']);
 
-Route::middleware(['auth', IsAdmin::class])->group(function () {
-    Route::resource('carousel', CarouselController::class);
+    Route::get('/forgot-password', [ForgotPasswordController::class, 'create'])->name('password.request');
+    Route::post('/forgot-password', [ForgotPasswordController::class, 'store'])->name('password.email');
+
+    Route::get('/reset-password/{token}', [ResetPasswordController::class, 'create'])->name('password.reset');
+    Route::post('/reset-password', [ResetPasswordController::class, 'store']);
 });
 
-Route::middleware(['auth'])->group(function () {
+// Routes pour les utilisateurs authentifiés (auth)
+Route::middleware('auth')->group(function () {
+
+
+    Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
+    Route::post('/users/{user}/message', [MessageController::class, 'send'])->name('users.message.send');
     Route::get('/profile.edit', [ProfileController::class, 'edit'])->name('profile.edit');
-    // Route::get('/profile.edit', [Profile::class, 'edit'])->name('profile.edit');
     Route::put('/profile.edit', [ProfileController::class, 'update'])->name('profile.update');
-    // Route::put('/profile.edit', [Profile::class, 'update'])->name('profile.update');
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/medias', [MediasController::class, 'index'])->name('Medias');
-    
-    // Route::get('/dashboard', function () {
-    //     return view('dashboard');
-    // })->name('dashboard');
 
     Route::get('/tables', function () {
         return view('tables');
@@ -69,55 +72,33 @@ Route::middleware(['auth'])->group(function () {
     Route::get('utilisateur/user-profile', [ProfileController::class, 'index'])->name('users.profile');
     Route::put('utilisateur/user-profile/update', [ProfileController::class, 'update'])->name('users.update');
     Route::get('utilisateur/users-management', [UserController::class, 'index'])->name('users-management');
+
+    Route::post('/update-activity', [UserController::class, 'updateActivity']);
+
+    Route::middleware('verified')->group(function () {
+        Route::get('/chat-room/{recipientName}', ChatRoom::class)->name('chat-room');
+        Route::post('/send-message/{name}', [MessageController::class, 'send'])->name('message.send');
+    });
+    
+    Route::middleware(IsAdmin::class)->group(function () {
+        Route::resource('carousel', CarouselController::class);
+    });
+
+    Route::get('/profile', function () {
+        return view('account-pages.profile');
+    })->name('profile');
 });
+
+// Routes publiques
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+
+Route::get('/pages/{id}', [PageController::class, 'show'])->name('pages.show');
+Route::get('/users/{name}', [UserController::class, 'show'])->name('users.show');
+
+Route::post('/follow/{name}', [FollowController::class, 'follow'])->name('follow');
+Route::post('/unfollow/{name}', [FollowController::class, 'unfollow'])->name('unfollow');
 
 Route::get('/', function () {
     return redirect('/dashboard');
 })->middleware('auth');
-
-
-Route::get('/profile', function () {
-    return view('account-pages.profile');
-})->name('profile')->middleware('auth');
-
-Route::get('/signin', function () {
-    return view('account-pages.signin');
-})->name('signin');
-
-Route::get('/signup', function () {
-    return view('account-pages.signup');
-})->name('signup')->middleware('guest');
-
-Route::get('/sign-up', [RegisterController::class, 'create'])
-    ->middleware('guest')
-    ->name('sign-up');
-
-Route::post('/sign-up', [RegisterController::class, 'store'])
-    ->middleware('guest');
-
-Route::get('/sign-in', [LoginController::class, 'create'])
-    ->middleware('guest')
-    ->name('sign-in');
-
-Route::post('/sign-in', [LoginController::class, 'store'])
-    ->middleware('guest');
-
-Route::post('/logout', [LoginController::class, 'destroy'])
-    ->middleware('auth')
-    ->name('logout');
-
-Route::get('/forgot-password', [ForgotPasswordController::class, 'create'])
-    ->middleware('guest')
-    ->name('password.request');
-
-Route::post('/forgot-password', [ForgotPasswordController::class, 'store'])
-    ->middleware('guest')
-    ->name('password.email');
-
-Route::get('/reset-password/{token}', [ResetPasswordController::class, 'create'])
-    ->middleware('guest')
-    ->name('password.reset');
-
-Route::post('/reset-password', [ResetPasswordController::class, 'store'])
-    ->middleware('guest');
-  

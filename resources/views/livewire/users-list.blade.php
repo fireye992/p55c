@@ -31,8 +31,6 @@
     </ul>
 </div>
 
-
-
 <script>
   //rafraichissement des online ECF
     document.addEventListener('DOMContentLoaded', function () {

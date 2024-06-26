@@ -219,7 +219,17 @@
                             </div>
                         </div>
                         <div class="card-body p-3 pt-0">
-                            @livewire('chat')
+                            <!-- ca marche avec auth()-> au lieu de $user , il faut que je reussise a entre cette variable -->
+                            @if(isset($test))
+                            @foreach($tests as $test)
+                                <p>{{ $test}}</p>
+                            @endforeach
+                        @else
+                            <p>Aucun utilisateur trouvé</p>
+                        @endif
+                        
+                       
+                            @livewire('users-list')
                         </div>
                     </div>
                 </div>

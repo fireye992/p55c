@@ -11,50 +11,17 @@ use Illuminate\Validation\Rule;
 
 class ProfileController extends Controller
 {
-    // public function edit()
-    // {
-    //     return view('profile.edit');
-    // }
-
-    // public function update(Request $request)
-    // {
-    //     $request->validate([
-    //         'first_name' => 'nullable|string|max:255',
-    //         'name' => 'required|string|max:255',
-    //         'birth_date' => 'nullable|date',
-    //         'email' => 'required|string|email|max:255',
-    //         'address' => 'nullable|string|min:8',
-    //         'zip_code' => 'nullable|string|max:10',
-    //         'city' => 'nullable|string|max:255',
-    //         'phone' => 'nullable|numeric|digits:10',
-    //         'activity_type' => 'nullable|in:loisir,competition',
-    //     ]);
-
-    //     $user = Auth::user();
-    //     $user->update($request->only(['first_name', 'name', 'birth_date', 'email', 'address', 'zip_code', 'city', 'phone', 'activity_type']));
-
-    //     return redirect()->route('profile.edit')->with('status', 'Profile updated successfully.');
-    // }
-    // public function show()
-    // {
-    //     $user = Auth::user();
-    //     return view('profile', compact('user'));
-    // }
-
+    //fonction pour afficher les modification du profile authtifié
     public function index()
     {
-        $user = User::find(Auth::id());
+        $authuser = User::find(Auth::id());
 
-        return view('utilisateur.user-profile', compact('user'));
+        return view('utilisateur.user-profile', compact('authuser'));
     }
 
     public function update(Request $request)
     {
-        // if (config('app.is_demo') && in_array(Auth::id(), [1])) {
-        //     return back()->with('error', "You are in a demo version. You are not allowed to change the email for default users.");
-        // }
-
-        $request->validate([
+           $request->validate([
             'first_name' => 'required|min:3|max:44',
             'name' => 'required|min:3|max:111',
             'email' => 'required|email|max:255|unique:users,email,' . Auth::id(),
@@ -72,11 +39,11 @@ class ProfileController extends Controller
             'email.required' => 'Email is required',
         ]);
 
-        $user = User::find(Auth::id());
+        $authuser = User::find(Auth::id());
 
         $birth_date = $request->birth_date ? Carbon::createFromFormat('d/m/Y', $request->birth_date)->format('Y-m-d') : null;
 
-        $user->update([
+        $authuser->update([
             'first_name' => $request->first_name,
             'name' => $request->name,
             'email' => $request->email,
@@ -97,24 +64,38 @@ class ProfileController extends Controller
     // }
     if ($request->hasFile('photo')) {
         $path = $request->file('photo')->store('profile-photos', 'public');
-        $user->profile_photo_path = $path;
+        $authuser->profile_photo_path = $path;
 
-        $user->about = $request->input('about');
+        $authuser->about = $request->input('about');
         
-        $user->save();
+        $authuser->save();
     
         // Log pour voir ce qui est enregistré
         // Log::info('Photo updated for user: ' . $user->id . ' with path: ' . $user->profile_photo_path);
     }
     
-    return redirect()->route('profile')->with('success', 'Profile updated successfully.');
-        // return back()->with('success', 'Profile updated successfully.');
+    // return redirect()->route('profile')->with('success', 'Profile updated successfully.');
+        return back()->with('success', 'Profile updated successfully.');
     }
 
-    //fonction show pourles fallow et messages
-    public function show($username)
+   // fonction show pourles fallow et messages
+    // public function show($name)
+    // {
+    //     $user = User::where('name', $name)->firstOrFail();
+    //     $users = User::all(); // Ajouter cette ligne pour obtenir tous les utilisateurs
+    //     return view('account-pages.profile', compact('user', 'users')); // Passer la variable $users à la vue
+    // }
+
+    public function show()
     {
-        $user = User::where('username', $username)->firstOrFail();
-        return view('profile.show', compact('user'));
+        // Récupère l'utilisateur connecté
+        $authuser = Auth::user();
+        
+        // Récupère tous les utilisateurs
+        $users = User::all();
+        
+        // Passe les variables $user et $users à la vue
+        return view('account-pages.profile', compact('authuser', 'users'));
     }
+
 }
