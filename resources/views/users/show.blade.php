@@ -38,7 +38,7 @@
                         <a href="javascript:;" class="btn btn-sm btn-dark">Suivre</a>
                     </div> --}}
                     <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3 text-sm-end">
-                        <a href="{{ route('chat-room', ['recipientName' => $user->name]) }}" class="btn btn-sm btn-dark">Envoyer un message</a>
+                        <a href="{{ route('chat-room', ['recipientName' => $user->slug]) }}" class="btn btn-sm btn-dark">Envoyer un message</a>
                     </div>
                     
                 </div>

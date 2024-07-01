@@ -20,7 +20,7 @@
                         <li class="dropdown-item d-flex align-items-center">
                             <img src="{{ asset('storage/' . $user->profile_photo_path) }}" alt="Profile Photo" class="img-thumbnail me-2" style="width: 50px; height: 50px;">
                             <div>
-                                <a href="{{ route('users.show', $user->name) }}" class="text-decoration-none">
+                                <a href="{{ route('users.show', $user->slug) }}" class="text-decoration-none">
                                     <strong>Nom:</strong> {{ $user->name }}<br>
                                     <strong>Prénom:</strong> {{ $user->first_name }}
                                 </a>

@@ -15,9 +15,9 @@ class UserController extends Controller
         return view('utilisateur.users-management', compact('users'));
     }
     
-    public function show($name)
+    public function show($slug)
     {
-        $user = User::where('name', $name)->firstOrFail();
+        $user = User::where('slug', $slug)->firstOrFail();
         return view('users.show', compact('user'));
     }
 

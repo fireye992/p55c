@@ -14,13 +14,13 @@ class MessageController extends Controller
         return view('messages.index', compact('messages'));
     }
 
-    public function send(Request $request, $name)
+    public function send(Request $request, $slug)
     {
         $request->validate([
             'body' => 'required|string|max:1000',
         ]);
 
-        $recipient = User::where('name', $name)->firstOrFail();
+        $recipient = User::where('name', $slug)->firstOrFail();
 
         Message::create([
             'from_user_id' => Auth::id(),

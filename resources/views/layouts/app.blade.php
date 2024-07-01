@@ -42,6 +42,7 @@
     <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Noto+Sans:300,400,500,600,700,800|PT+Mono:300,400,500,600,700"
         rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Luxurious+Roman&family=Roboto:wght@100&display=swap" rel="stylesheet">
     <!-- Nucleo Icons -->
     <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
     <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
@@ -50,6 +51,7 @@
     <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/chat.css">
     {{-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> --}}
     <link id="pagestyle" href="../assets/css/corporate-ui-dashboard.css?v=1.0.0" rel="stylesheet" />
     @livewireStyles
@@ -429,6 +431,7 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Corporate UI Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../assets/js/corporate-ui-dashboard.min.js?v=1.0.0"></script>
+    <script src="../assets/js/app.js"></script>
     <!-- mode nuit qui marche pas  -->
     {{-- <script>
         const themeToggle = document.getElementById('theme-toggle');

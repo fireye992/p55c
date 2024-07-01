@@ -17,9 +17,12 @@ use App\Http\Controllers\FollowController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SearchResultController;
+use App\Livewire\Chat\CreateChat;
+use App\Livewire\Chat\Main;
 use App\Livewire\ChatRoom;
 use App\Livewire\Profile;
 use App\Models\User;
+use ChatRoom as GlobalChatRoom;
 
 // Routes pour les invités (guest)
 Route::middleware('guest')->group(function () {
@@ -47,6 +50,8 @@ Route::middleware('guest')->group(function () {
 // Routes pour les utilisateurs authentifiés (auth)
 Route::middleware('auth')->group(function () {
 
+    Route::get('/users', CreateChat::class)->name('users');
+    Route::get('/chat{key?}', Main::class)->name('chat');
 
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
     Route::post('/users/{user}/message', [MessageController::class, 'send'])->name('users.message.send');
@@ -77,9 +82,9 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('verified')->group(function () {
         Route::get('/chat-room/{recipientName}', ChatRoom::class)->name('chat-room');
-        Route::post('/send-message/{name}', [MessageController::class, 'send'])->name('message.send');
+        Route::post('/send-message/{slug}', [MessageController::class, 'send'])->name('message.send');
     });
-    
+
     Route::middleware(IsAdmin::class)->group(function () {
         Route::resource('carousel', CarouselController::class);
     });
@@ -94,10 +99,10 @@ Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
 Route::get('/pages/{id}', [PageController::class, 'show'])->name('pages.show');
-Route::get('/users/{name}', [UserController::class, 'show'])->name('users.show');
+Route::get('/users/{slug}', [UserController::class, 'show'])->name('users.show');
 
-Route::post('/follow/{name}', [FollowController::class, 'follow'])->name('follow');
-Route::post('/unfollow/{name}', [FollowController::class, 'unfollow'])->name('unfollow');
+Route::post('/follow/{slug}', [FollowController::class, 'follow'])->name('follow');
+Route::post('/unfollow/{slug}', [FollowController::class, 'unfollow'])->name('unfollow');
 
 Route::get('/', function () {
     return redirect('/dashboard');

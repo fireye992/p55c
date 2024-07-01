@@ -2,10 +2,10 @@
     <ul class="list-group user-list" style="max-height: 400px; overflow-y: auto;">
         @foreach ($users as $user)
             <li class="list-group-item border-0 d-flex align-items-center px-0 mb-1 user-item">
-                <a href="{{ route('users.show', $user->name) }}" class="d-flex align-items-center w-100 text-decoration-none">
+                <a href="{{ route('users.show', $user->slug) }}" class="d-flex align-items-center w-100 text-decoration-none">
                     <div class="avatar avatar-sm rounded-circle me-2">
                         @if ($user->profile_photo_path)
-                            <img src="{{ asset('storage/' . $user->profile_photo_path) }}" alt="{{ $user->name }}" class="w-100">
+                            <img src="{{ asset('storage/' . $user->profile_photo_path) }}" alt="{{ $user->slug }}" class="w-100">
                         @else
                             <img src="{{ asset('path/to/default/avatar.jpg') }}" alt="Default Avatar" class="w-100">
                         @endif
@@ -35,7 +35,7 @@
   //rafraichissement des online ECF
     document.addEventListener('DOMContentLoaded', function () {
       setInterval(() => {
-          Livewire.emit('refreshUsers');
+          Livewire.dispatch('refreshUsers');
       }, 5000); // Mettre à jour toutes les 5 secondes
   });
 </script>

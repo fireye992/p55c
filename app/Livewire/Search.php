@@ -17,7 +17,7 @@ class Search extends Component
     // Déclaration de la propriété $includePages
     protected $includePages = [
         'dashboard',
-        'users/{name}',
+        'users/{slug}',
         'wallet',
         'table',
         'pages/about',

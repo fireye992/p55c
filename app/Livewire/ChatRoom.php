@@ -11,7 +11,8 @@ class ChatRoom extends Component
 {
     public $messages;
     public $messageText;
-    public $recipientName;
+    public $recipientName;  
+    public $recipientFirstName;
     public $recipientId;
     public $newMessageId;
 
@@ -20,6 +21,7 @@ class ChatRoom extends Component
         $this->recipientName = $recipientName;
         $recipient = User::where('name', $this->recipientName)->firstOrFail();
         $this->recipientId = $recipient->id;
+        $this->recipientFirstName = $recipient->first_name;
         $this->loadMessages();
     }
 

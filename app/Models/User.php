@@ -12,7 +12,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-
+use Illuminate\Support\Str;
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -76,6 +76,27 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    // ajouter mais pour le conversation
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($user) {
+            if (empty($user->slug)) {
+                $slug = Str::slug($user->name);
+                $originalSlug = $slug;
+                $counter = 1;
+
+                // Ensure the slug is unique
+                while (User::where('slug', $slug)->exists()) {
+                    $slug = $originalSlug . '-' . $counter++;
+                }
+
+                $user->slug = $slug;
+            }
+        });
+    }
+
     public function getBirthDateAttribute($value)
     {
         return $value ? Carbon::createFromFormat('Y-m-d', $value)->format('d/m/Y') : null;
@@ -127,7 +148,8 @@ class User extends Authenticatable
     {
         return $this->last_activity && Carbon::parse($this->last_activity)->gt(Carbon::now()->subMinutes(5));
     }
-    
+
+
     public function updateActivity()
     {
         $this->last_activity = Carbon::now();
